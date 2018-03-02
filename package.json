@@ -1,0 +1,36 @@
+{
+  "name": "fastify-elasticsearch",
+  "version": "0.0.1",
+  "description": "Fastify plugin for elastic search",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastify/fastify-elasticsearch.git"
+  },
+  "keywords": [
+    "fasify",
+    "elastic",
+    "elasticsearch",
+    "elastic search",
+    "ES"
+  ],
+  "author": "Tommaso Allevi - @allevo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fastify/fastify-elasticsearch/issues"
+  },
+  "homepage": "https://github.com/fastify/fastify-elasticsearch#readme",
+  "dependencies": {
+    "elasticsearch": "^14.1.0",
+    "fastify-plugin": "^0.2.2"
+  },
+  "devDependencies": {
+    "fastify": "^1.0.0-rc.3",
+    "snazzy": "^7.1.1",
+    "standard": "^11.0.0",
+    "tap": "^11.1.1"
+  }
+}
