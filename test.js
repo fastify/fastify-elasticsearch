@@ -7,19 +7,21 @@ const t = require('tap')
 const elasticsearch = require('elasticsearch')
 
 t.test('fastify-elasticsearch', t => {
-  t.test('with host and port', async t => {
+  t.test('with host and port', t => {
     t.plan(2)
 
     const fastify = Fastify()
     fastify.register(fastifyElasticSearch, { host: '127.0.0.1', port: 9200 })
 
-    await fastify.ready()
-
-    t.ok(fastify.elasticsearch)
-    t.ok(fastify.elasticsearch.msearch)
+    fastify.ready()
+      .then(() => {
+        t.ok(fastify.elasticsearch)
+        t.ok(fastify.elasticsearch.msearch)
+      })
+      .catch(e => t.fail(e))
   })
 
-  t.test('with the client', async t => {
+  t.test('with the client', t => {
     t.plan(1)
 
     const client = new elasticsearch.Client({ host: '127.0.0.1', port: 9200 })
@@ -27,9 +29,11 @@ t.test('fastify-elasticsearch', t => {
     const fastify = Fastify()
     fastify.register(fastifyElasticSearch, { client })
 
-    await fastify.ready()
-
-    t.equal(client, fastify.elasticsearch)
+    fastify.ready()
+      .then(() => {
+        t.equal(client, fastify.elasticsearch)
+      })
+      .catch(e => t.fail(e))
   })
 
   t.end()
