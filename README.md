@@ -1,6 +1,6 @@
 # fastify-elasticsearch
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://travis-ci.org/fastify/fastify-elasticsearch.svg?branch=master)](https://travis-ci.org/fastify/fastify-elasticsearch)
 
 Fastify plugin for elastic search for sharing the same ES client in every part of your server.
 
