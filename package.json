@@ -4,7 +4,10 @@
   "description": "Fastify plugin for elastic search",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard | snazzy",
+    "unit": "tap test.js",
+    "coverage": "tap --cov test.js",
+    "test": "npm run lint && npm run unit"
   },
   "repository": {
     "type": "git",
