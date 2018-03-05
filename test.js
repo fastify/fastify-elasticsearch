@@ -11,7 +11,7 @@ t.test('fastify-elasticsearch', t => {
     t.plan(2)
 
     const fastify = Fastify()
-    fastify.register(fastifyElasticSearch, { host: '127.0.0.1', port: 9200 })
+    fastify.register(fastifyElasticSearch, { host: '127.0.0.1:9200' })
 
     fastify.ready()
       .then(() => {
@@ -24,7 +24,7 @@ t.test('fastify-elasticsearch', t => {
   t.test('with the client', t => {
     t.plan(1)
 
-    const client = new elasticsearch.Client({ host: '127.0.0.1', port: 9200 })
+    const client = new elasticsearch.Client({ host: '127.0.0.1:9200' })
 
     const fastify = Fastify()
     fastify.register(fastifyElasticSearch, { client })

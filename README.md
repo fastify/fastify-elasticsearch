@@ -8,6 +8,8 @@ Under the hood the official [elasticsearch](https://www.npmjs.com/package/elasti
 
 Unless you give the client to this plugin, this module will pass all options to the ES Client constructor.
 
+**NB:** this fastify plugin always close the elasticsearch client on server shutdown
+
 ## Install
 
 ```

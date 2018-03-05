@@ -12,8 +12,13 @@ function fastifyElasticSearch (fastify, options, next) {
 
   fastify
     .decorate('elasticsearch', client)
+    .addHook('onClose', closeESClient)
 
   next()
+}
+
+function closeESClient (fastify) {
+  return fastify.elasticsearch.close()
 }
 
 module.exports = fp(fastifyElasticSearch, {
