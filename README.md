@@ -1,8 +1,7 @@
 # fastify-elasticsearch
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/fastify/fastify-elasticsearch.svg)](https://greenkeeper.io/)
-
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://travis-ci.org/fastify/fastify-elasticsearch.svg?branch=master)](https://travis-ci.org/fastify/fastify-elasticsearch)
+[![Greenkeeper badge](https://badges.greenkeeper.io/fastify/fastify-elasticsearch.svg)](https://greenkeeper.io/)
 
 Fastify plugin for elastic search for sharing the same ES client in every part of your server.
 
