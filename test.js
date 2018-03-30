@@ -45,7 +45,7 @@ t.test('fastify-elasticsearch', t => {
     fastify.register(fastifyElasticSearch, { client })
 
     fastify.ready()
-      .then(e => t.fail(e))
+      .then(() => t.fail('should not boot successfully'))
       .catch((err) => {
         t.equal(err.message, 'No Living connections')
         fastify.close(() => t.end())
