@@ -31,8 +31,6 @@ function fastifyElasticSearch (fastify, options, next) {
     fastify.log.debug('elasticsearch client is closing ...')
     return client.close()
   }
-
-  next()
 }
 
 module.exports = fp(fastifyElasticSearch, {

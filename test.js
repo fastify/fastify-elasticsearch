@@ -36,5 +36,21 @@ t.test('fastify-elasticsearch', t => {
       .catch(e => t.fail(e))
   })
 
+  t.test('with unreachable cluster', t => {
+    t.plan(1)
+
+    const client = new elasticsearch.Client({ host: '127.0.0.1:9999' })
+
+    const fastify = Fastify()
+    fastify.register(fastifyElasticSearch, { client })
+
+    fastify.ready()
+      .then(e => t.fail(e))
+      .catch((err) => {
+        t.equal(err.message, 'No Living connections')
+        fastify.close(() => t.end())
+      })
+  })
+
   t.end()
 })
