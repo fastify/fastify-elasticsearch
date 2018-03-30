@@ -3,22 +3,37 @@
 const fp = require('fastify-plugin')
 const elasticsearch = require('elasticsearch')
 
-function createClient (options) {
-  return new elasticsearch.Client(options)
-}
-
 function fastifyElasticSearch (fastify, options, next) {
-  var client = options.client || createClient(options)
+  const client = options.client || new elasticsearch.Client(options)
+  const requestTimeout = options.timeout
+
+  client.ping(
+    {
+      // ping usually has a 3000ms timeout
+      requestTimeout
+    },
+    function (err) {
+      if (err) {
+        fastify.log.error(err, 'elasticsearch cluster is down!')
+        throw err
+      } else {
+        fastify.log.debug('elasticsearch cluster is available')
+        // plugin is ready
+        next()
+      }
+    }
+  )
 
   fastify
     .decorate('elasticsearch', client)
     .addHook('onClose', closeESClient)
 
-  next()
-}
+  function closeESClient () {
+    fastify.log.debug('elasticsearch client is closing ...')
+    return client.close()
+  }
 
-function closeESClient (fastify) {
-  return fastify.elasticsearch.close()
+  next()
 }
 
 module.exports = fp(fastifyElasticSearch, {
