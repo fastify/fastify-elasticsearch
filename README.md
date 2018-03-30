@@ -33,7 +33,7 @@ fastify.get('/user/:id', function (req, reply) {
     index: 'myindex',
     type: 'user',
     id: req.params.id
-  }, function (error, response) {
+  }, function (err, response) {
     if (err) return reply.send(err)
 
     reply.send(response)
