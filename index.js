@@ -14,8 +14,7 @@ function fastifyElasticSearch (fastify, options, next) {
     },
     function (err) {
       if (err) {
-        fastify.log.error(err, 'elasticsearch cluster is down!')
-        throw err
+        next(err)
       } else {
         fastify.log.debug('elasticsearch cluster is available')
         // plugin is ready
