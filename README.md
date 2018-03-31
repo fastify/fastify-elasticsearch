@@ -53,7 +53,7 @@ const elasticsearch = require('elasticsearch')
 const client = new elasticsearch.Client({ host: '127.0.0.1', port: 9200 })
 const fastify = require('fastify')()
 
-fastify.register(require('fastify-mongodb'), { client: client })
+fastify.register(require('fastify-elasticsearch'), { client: client })
   .register(function (fastify, opts, next) {
     const elasticsearch = fastify.elasticsearch
     // ...
