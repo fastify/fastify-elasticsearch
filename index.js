@@ -34,6 +34,6 @@ function fastifyElasticSearch (fastify, options, next) {
 }
 
 module.exports = fp(fastifyElasticSearch, {
-  fastify: '>=0.39',
+  fastify: '>= 1.0.0',
   name: 'fastify-elasticsearch'
 })
