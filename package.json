@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/fastify/fastify-elasticsearch#readme",
   "dependencies": {
-    "elasticsearch": "^14.1.0",
+    "elasticsearch": "^15.0.0",
     "fastify-plugin": "^1.0.0"
   },
   "devDependencies": {
