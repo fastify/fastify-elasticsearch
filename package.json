@@ -1,6 +1,6 @@
 {
   "name": "fastify-elasticsearch",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Fastify plugin for elastic search",
   "main": "index.js",
   "scripts": {
