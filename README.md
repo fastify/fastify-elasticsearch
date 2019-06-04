@@ -22,12 +22,14 @@ const fastify = require('fastify')()
 fastify.register(require('fastify-elasticsearch'), { node: 'http://localhost:9200' })
 
 fastify.get('/user', async function (req, reply) {
-  const { body } = this.elastic.search({
+  const { body } = await this.elastic.search({
     index: 'tweets',
     body: {
       query: { match: { text: req.query.q }}
     }
   })
+
+  return body.hits.hits
 })
 
 fastify.listen(3000, err => {
@@ -50,12 +52,14 @@ fastify.register(require('fastify-elasticsearch'), {
 })
 
 fastify.get('/user', async function (req, reply) {
-  const { body } = this.elastic.cluster1.search({
+  const { body } = await this.elastic.cluster1.search({
     index: 'tweets',
     body: {
       query: { match: { text: req.query.q }}
     }
   })
+
+  return body.hits.hits
 })
 
 fastify.listen(3000, err => {
@@ -75,12 +79,14 @@ fastify.register(require('fastify-elasticsearch'), {
 })
 
 fastify.get('/user', async function (req, reply) {
-  const { body } = this.elastic.search({
+  const { body } = await this.elastic.search({
     index: 'tweets',
     body: {
       query: { match: { text: req.query.q }}
     }
   })
+
+  return body.hits.hits
 })
 
 fastify.listen(3000, err => {
