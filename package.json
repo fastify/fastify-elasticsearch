@@ -20,7 +20,7 @@
     "ES"
   ],
   "author": "Tommaso Allevi - @allevo",
-  "lrcense": "MIT",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fastify/fastify-elasticsearch/issues"
   },
