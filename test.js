@@ -5,46 +5,41 @@ const { Client } = require('@elastic/elasticsearch')
 const Fastify = require('fastify')
 const fastifyElasticsearch = require('./index')
 
-test('with reachable cluster', t => {
+test('with reachable cluster', async t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, { node: 'http://localhost:9200' })
 
-  fastify.ready()
-    .then(() => {
-      t.strictEqual(fastify.elastic.name, 'elasticsearch-js')
-      fastify.close(() => t.end())
-    })
-    .catch(e => t.fail(e))
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.name, 'elasticsearch-js')
+  await fastify.close()
 })
 
-test('with unreachable cluster', t => {
+test('with unreachable cluster', async t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, { node: 'http://localhost:9201' })
 
-  fastify.ready()
-    .then(() => t.fail('should not boot successfully'))
-    .catch((err) => {
-      t.ok(err)
-      fastify.close(() => t.end())
-    })
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
 })
 
-test('namespaced', t => {
+test('namespaced', async t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, {
     node: 'http://localhost:9200',
     namespace: 'cluster'
   })
 
-  fastify.ready()
-    .then(() => {
-      t.strictEqual(fastify.elastic.cluster.name, 'elasticsearch-js')
-      fastify.close(() => t.end())
-    })
-    .catch(e => t.fail(e))
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.cluster.name, 'elasticsearch-js')
+  await fastify.close()
 })
 
-test('namespaced (errored)', t => {
+test('namespaced (errored)', async t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, {
     node: 'http://localhost:9200',
@@ -56,15 +51,16 @@ test('namespaced (errored)', t => {
     namespace: 'cluster'
   })
 
-  fastify.ready()
-    .then(() => t.fail('should not boot successfully'))
-    .catch((err) => {
-      t.ok(err)
-      fastify.close(() => t.end())
-    })
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
 })
 
-test('custom client', t => {
+test('custom client', async t => {
   const client = new Client({
     node: 'http://localhost:9200',
     name: 'custom'
@@ -73,10 +69,7 @@ test('custom client', t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, { client })
 
-  fastify.ready()
-    .then(() => {
-      t.strictEqual(fastify.elastic.name, 'custom')
-      fastify.close(() => t.end())
-    })
-    .catch(e => t.fail(e))
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.name, 'custom')
+  await fastify.close()
 })
