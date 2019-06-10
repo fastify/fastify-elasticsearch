@@ -1,56 +1,88 @@
 'use strict'
 
+const { test } = require('tap')
+const { Client } = require('@elastic/elasticsearch')
 const Fastify = require('fastify')
-const fastifyElasticSearch = require('./index')
-const t = require('tap')
+const fastifyElasticsearch = require('./index')
 
-const elasticsearch = require('elasticsearch')
+test('with reachable cluster', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, { node: 'http://localhost:9200' })
 
-t.test('fastify-elasticsearch', t => {
-  t.test('with host and port', t => {
-    t.plan(2)
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.name, 'elasticsearch-js')
+  await fastify.close()
+})
 
-    const fastify = Fastify()
-    fastify.register(fastifyElasticSearch, { host: '127.0.0.1:9200' })
+test('with unreachable cluster', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, { node: 'http://localhost:9201' })
 
-    fastify.ready()
-      .then(() => {
-        t.ok(fastify.elasticsearch)
-        t.ok(fastify.elasticsearch.msearch)
-      })
-      .catch(e => t.fail(e))
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
+})
+
+test('namespaced', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, {
+    node: 'http://localhost:9200',
+    namespace: 'cluster'
   })
 
-  t.test('with the client', t => {
-    t.plan(1)
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.cluster.name, 'elasticsearch-js')
+  await fastify.close()
+})
 
-    const client = new elasticsearch.Client({ host: '127.0.0.1:9200' })
-
-    const fastify = Fastify()
-    fastify.register(fastifyElasticSearch, { client })
-
-    fastify.ready()
-      .then(() => {
-        t.equal(client, fastify.elasticsearch)
-      })
-      .catch(e => t.fail(e))
+test('namespaced (errored)', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, {
+    node: 'http://localhost:9200',
+    namespace: 'cluster'
   })
 
-  t.test('with unreachable cluster', t => {
-    t.plan(1)
-
-    const client = new elasticsearch.Client({ host: '127.0.0.1:9999' })
-
-    const fastify = Fastify()
-    fastify.register(fastifyElasticSearch, { client })
-
-    fastify.ready()
-      .then(() => t.fail('should not boot successfully'))
-      .catch((err) => {
-        t.equal(err.message, 'No Living connections')
-        fastify.close(() => t.end())
-      })
+  fastify.register(fastifyElasticsearch, {
+    node: 'http://localhost:9200',
+    namespace: 'cluster'
   })
 
-  t.end()
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
+})
+
+test('custom client', async t => {
+  const client = new Client({
+    node: 'http://localhost:9200',
+    name: 'custom'
+  })
+
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, { client })
+
+  await fastify.ready()
+  t.strictEqual(fastify.elastic.name, 'custom')
+  await fastify.close()
+})
+
+test('Missing configuration', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch)
+
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
 })

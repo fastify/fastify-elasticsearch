@@ -1,39 +1,40 @@
 'use strict'
 
 const fp = require('fastify-plugin')
-const elasticsearch = require('elasticsearch')
+const { Client } = require('@elastic/elasticsearch')
 
-function fastifyElasticSearch (fastify, options, next) {
-  const client = options.client || new elasticsearch.Client(options)
-  const requestTimeout = options.timeout
+async function fastifyElasticsearch (fastify, options) {
+  const { namespace } = options
+  delete options.namespace
 
-  client.ping(
-    {
-      // ping usually has a 3000ms timeout
-      requestTimeout
-    },
-    function (err) {
-      if (err) {
-        next(err)
-      } else {
-        fastify.log.debug('elasticsearch cluster is available')
-        // plugin is ready
-        next()
-      }
+  const client = options.client || new Client(options)
+
+  await client.ping()
+
+  if (namespace) {
+    if (!fastify.elastic) {
+      fastify.decorate('elastic', {})
     }
-  )
 
-  fastify
-    .decorate('elasticsearch', client)
-    .addHook('onClose', closeESClient)
+    if (fastify.elastic[namespace]) {
+      throw new Error(`Elasticsearch namespace already used: ${namespace}`)
+    }
 
-  function closeESClient () {
-    fastify.log.debug('elasticsearch client is closing ...')
-    return client.close()
+    fastify.elastic[namespace] = client
+
+    fastify.addHook('onClose', (instance, done) => {
+      instance.elastic[namespace].close(done)
+    })
+  } else {
+    fastify
+      .decorate('elastic', client)
+      .addHook('onClose', (instance, done) => {
+        instance.elastic.close(done)
+      })
   }
 }
 
-module.exports = fp(fastifyElasticSearch, {
+module.exports = fp(fastifyElasticsearch, {
   fastify: '>= 1.0.0',
   name: 'fastify-elasticsearch'
 })
