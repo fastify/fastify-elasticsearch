@@ -73,3 +73,16 @@ test('custom client', async t => {
   t.strictEqual(fastify.elastic.name, 'custom')
   await fastify.close()
 })
+
+test('Missing configuration', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch)
+
+  try {
+    await fastify.ready()
+    t.fail('should not boot successfully')
+  } catch (err) {
+    t.ok(err)
+    await fastify.close()
+  }
+})
