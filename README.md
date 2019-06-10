@@ -14,7 +14,7 @@ npm i fastify-elasticsearch
 
 ## Usage
 Add it to your project with `register` and you are done!  
-The plugins accepts the same options of the client.
+The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) of the client.
 
 ```js
 const fastify = require('fastify')()
