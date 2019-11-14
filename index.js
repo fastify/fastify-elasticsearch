@@ -4,12 +4,15 @@ const fp = require('fastify-plugin')
 const { Client } = require('@elastic/elasticsearch')
 
 async function fastifyElasticsearch (fastify, options) {
-  const { namespace } = options
+  const { namespace, healthcheck } = options
   delete options.namespace
+  delete options.healthcheck
 
   const client = options.client || new Client(options)
 
-  await client.ping()
+  if (healthcheck !== false) {
+    await client.ping()
+  }
 
   if (namespace) {
     if (!fastify.elastic) {
