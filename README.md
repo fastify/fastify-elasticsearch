@@ -37,6 +37,14 @@ fastify.listen(3000, err => {
 })
 ```
 
+By default, `fastify-elasticsearch` will try to ping the cluster as soon as you start Fastify, but in some cases pinging may not be supported due to the user permissions. If you want, you can disable the initial ping with the `healthcheck` option:
+```js
+fastify.register(require('fastify-elasticsearch'), {
+  node: 'http://localhost:9200',
+  healthcheck: false
+})
+```
+
 If you need to connect to different clusters, you can also pass a `namespace` option:
 ```js
 const fastify = require('fastify')()
