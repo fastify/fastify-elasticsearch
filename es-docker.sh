@@ -7,4 +7,4 @@ exec docker run \
   --rm \
   -e "discovery.type=single-node" \
   -p 9200:9200 \
-  docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+  docker.elastic.co/elasticsearch/elasticsearch:7.4.0
