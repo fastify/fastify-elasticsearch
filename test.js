@@ -27,6 +27,22 @@ test('with unreachable cluster', async t => {
   }
 })
 
+test('with unreachable cluster and healthcheck disabled', async t => {
+  const fastify = Fastify()
+  fastify.register(fastifyElasticsearch, {
+    node: 'http://localhost:9201',
+    healthcheck: false
+  })
+
+  try {
+    await fastify.ready()
+    t.strictEqual(fastify.elastic.name, 'elasticsearch-js')
+  } catch (err) {
+    t.fail('should not error')
+  }
+  await fastify.close()
+})
+
 test('namespaced', async t => {
   const fastify = Fastify()
   fastify.register(fastifyElasticsearch, {
