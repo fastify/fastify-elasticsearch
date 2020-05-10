@@ -38,6 +38,6 @@ async function fastifyElasticsearch (fastify, options) {
 }
 
 module.exports = fp(fastifyElasticsearch, {
-  fastify: '>= 1.0.0',
+  fastify: '3.x',
   name: 'fastify-elasticsearch'
 })
