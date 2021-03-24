@@ -25,6 +25,9 @@
     "url": "https://github.com/fastify/fastify-elasticsearch/issues"
   },
   "homepage": "https://github.com/fastify/fastify-elasticsearch#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "dependencies": {
     "@elastic/elasticsearch": "^7.1.0",
     "fastify-plugin": "^3.0.0"
