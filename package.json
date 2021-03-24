@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard | snazzy",
-    "unit": "tap test.js",
-    "test": "npm run lint && npm run unit"
+    "test": "npm run lint && npm run unit",
+    "unit": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,9 @@
     "url": "https://github.com/fastify/fastify-elasticsearch/issues"
   },
   "homepage": "https://github.com/fastify/fastify-elasticsearch#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "dependencies": {
     "@elastic/elasticsearch": "^7.1.0",
     "fastify-plugin": "^3.0.0"
