@@ -5,7 +5,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/fastify/fastify-elasticsearch/badge.svg)](https://snyk.io/test/github/fastify/fastify-elasticsearch)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
-Fastify plugin for Elasticsearch for sharing the same ES client in every part of your server.  
+Fastify plugin for [Elasticsearch](https://www.elastic.co/elasticsearch/) for sharing the same ES client in every part of your server.  
 Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch) module is used.
 
 
@@ -17,7 +17,7 @@ npm i fastify-elasticsearch
 
 ## Usage
 Add it to your project with `register` and you are done!  
-The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) of the client.
+The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) as the client.
 
 ```js
 const fastify = require('fastify')()
