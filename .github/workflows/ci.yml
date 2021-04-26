@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10, 12, 14, 16]
 
     services:
       elasticsearch:
@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          npm run test
+          npm test
 
   automerge:
     needs: test
