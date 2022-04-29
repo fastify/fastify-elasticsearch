@@ -1,7 +1,7 @@
-# fastify-elasticsearch
+# @fastify/elasticsearch
 
 ![CI](https://github.com/fastify/fastify-elasticsearch/workflows/CI/badge.svg)
-[![NPM version](https://img.shields.io/npm/v/fastify-elasticsearch.svg?style=flat)](https://www.npmjs.com/package/fastify-elasticsearch)
+[![NPM version](https://img.shields.io/npm/v/@fastify/elasticsearch.svg?style=flat)](https://www.npmjs.com/package/@fastify/elasticsearch)
 [![Known Vulnerabilities](https://snyk.io/test/github/fastify/fastify-elasticsearch/badge.svg)](https://snyk.io/test/github/fastify/fastify-elasticsearch)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
@@ -12,7 +12,7 @@ Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elas
 ## Install
 
 ```
-npm i fastify-elasticsearch
+npm i @fastify/elasticsearch
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ The plugin accepts the [same options](https://github.com/elastic/elasticsearch-j
 ```js
 const fastify = require('fastify')()
 
-fastify.register(require('fastify-elasticsearch'), { node: 'http://localhost:9200' })
+fastify.register(require('@fastify/elasticsearch'), { node: 'http://localhost:9200' })
 
 fastify.get('/user', async function (req, reply) {
   const { body } = await this.elastic.search({
@@ -40,9 +40,9 @@ fastify.listen(3000, err => {
 })
 ```
 
-By default, `fastify-elasticsearch` will try to ping the cluster as soon as you start Fastify, but in some cases pinging may not be supported due to the user permissions. If you want, you can disable the initial ping with the `healthcheck` option:
+By default, `@fastify/elasticsearch` will try to ping the cluster as soon as you start Fastify, but in some cases pinging may not be supported due to the user permissions. If you want, you can disable the initial ping with the `healthcheck` option:
 ```js
-fastify.register(require('fastify-elasticsearch'), {
+fastify.register(require('@fastify/elasticsearch'), {
   node: 'http://localhost:9200',
   healthcheck: false
 })
@@ -52,12 +52,12 @@ If you need to connect to different clusters, you can also pass a `namespace` op
 ```js
 const fastify = require('fastify')()
 
-fastify.register(require('fastify-elasticsearch'), {
+fastify.register(require('@fastify/elasticsearch'), {
   node: 'http://localhost:9200',
   namespace: 'cluster1'
 })
 
-fastify.register(require('fastify-elasticsearch'), {
+fastify.register(require('@fastify/elasticsearch'), {
   node: 'http://localhost:9201',
   namespace: 'cluster2'
 })
@@ -85,7 +85,7 @@ If it is not, you can pass a custom client via the `client` option.
 const fastify = require('fastify')()
 const { Client } = require('@elastic/elasticsearch')
 
-fastify.register(require('fastify-elasticsearch'), {
+fastify.register(require('@fastify/elasticsearch'), {
   client: new Client({ node: 'http://localhost:9200' })
 })
 
