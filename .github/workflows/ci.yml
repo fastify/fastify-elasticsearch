@@ -10,14 +10,11 @@ name: CI
       - '*.md'
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version:
-          - 10
-          - 12
-          - 14
-          - 16
+        node-version: [14, 16, 18]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     services:
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
