@@ -35,7 +35,7 @@ fastify.get('/user', async function (req, reply) {
   return body.hits.hits
 })
 
-fastify.listen(3000, err => {
+fastify.listen({ port: 3000 }, err => {
   if (err) throw err
 })
 ```
@@ -73,7 +73,7 @@ fastify.get('/user', async function (req, reply) {
   return body.hits.hits
 })
 
-fastify.listen(3000, err => {
+fastify.listen({ port: 3000 }, err => {
   if (err) throw err
 })
 ```
@@ -100,7 +100,7 @@ fastify.get('/user', async function (req, reply) {
   return body.hits.hits
 })
 
-fastify.listen(3000, err => {
+fastify.listen({ port: 3000 }, err => {
   if (err) throw err
 })
 ```
