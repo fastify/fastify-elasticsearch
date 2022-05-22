@@ -13,11 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version:
-          - 10
-          - 12
-          - 14
-          - 16
+        node-version: [14, 16, 18]
     services:
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0

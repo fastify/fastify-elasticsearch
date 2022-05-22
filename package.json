@@ -33,7 +33,7 @@
     "fastify-plugin": "^3.0.0"
   },
   "devDependencies": {
-    "fastify": "^3.0.0-rc.1",
+    "fastify": "^4.0.0-rc.2",
     "pre-commit": "^1.2.2",
     "snazzy": "^9.0.0",
     "standard": "^17.0.0",
