@@ -68,6 +68,5 @@ jobs:
     steps:
       - uses: fastify/github-action-merge-dependabot@v3
         with:
-          exclude: ${{ inputs.auto-merge-exclude }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           target: major
