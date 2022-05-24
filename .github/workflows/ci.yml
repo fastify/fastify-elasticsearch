@@ -9,6 +9,21 @@ name: CI
       - docs/**
       - '*.md'
 jobs:
+  dependency-review:
+    name: Dependency Review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@v1
+
   test:
     runs-on: ubuntu-latest
     strategy:
