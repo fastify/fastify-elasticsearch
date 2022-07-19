@@ -25,14 +25,15 @@ async function fastifyElasticsearch (fastify, options) {
 
     fastify.elastic[namespace] = client
 
-    fastify.addHook('onClose', (instance, done) => {
-      instance.elastic[namespace].close(done)
+    fastify.addHook('onClose', async (instance) => {
+      // v8 client.close returns a promise and does not accept a callback
+      await instance.elastic[namespace].close()
     })
   } else {
     fastify
       .decorate('elastic', client)
-      .addHook('onClose', (instance, done) => {
-        instance.elastic.close(done)
+      .addHook('onClose', async (instance) => {
+        await instance.elastic.close()
       })
   }
 }
