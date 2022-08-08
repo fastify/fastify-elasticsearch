@@ -1,4 +1,4 @@
-import type { FastifyPluginCallback } from 'fastify';
+import type { FastifyPluginAsync } from 'fastify';
 import type { Client, ClientOptions } from '@elastic/elasticsearch';
 
 export interface FastifyElasticsearchOptions extends ClientOptions {
@@ -14,6 +14,6 @@ declare module 'fastify' {
   }
 }
 
-export const fastifyElasticsearch: FastifyPluginCallback<FastifyElasticsearchOptions>;
+export const fastifyElasticsearch: FastifyPluginAsync<FastifyElasticsearchOptions>;
 
 export default fastifyElasticsearch;
