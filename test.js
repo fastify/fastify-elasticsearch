@@ -52,6 +52,8 @@ test('namespaced', async t => {
 
   await fastify.ready()
   t.strictEqual(fastify.elastic.cluster.name, 'elasticsearch-js')
+  t.equal(fastify.isElasticsearchClient(fastify.elastic), false)
+  t.equal(fastify.isElasticsearchClient(fastify.elastic.cluster), true)
   await fastify.close()
 })
 
@@ -86,6 +88,7 @@ test('custom client', async t => {
   fastify.register(fastifyElasticsearch, { client })
 
   await fastify.ready()
+  t.equal(fastify.isElasticsearchClient(fastify.elastic), true)
   t.strictEqual(fastify.elastic.name, 'custom')
   await fastify.close()
 })

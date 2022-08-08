@@ -10,6 +10,12 @@ async function fastifyElasticsearch (fastify, options) {
 
   const client = options.client || new Client(options)
 
+  if (!fastify.isElasticsearchClient) {
+    fastify.decorate('isElasticsearchClient', function isElasticsearchClient (value) {
+      return value instanceof Client
+    })
+  }
+
   if (healthcheck !== false) {
     await client.ping()
   }
