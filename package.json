@@ -1,6 +1,6 @@
 {
   "name": "@fastify/elasticsearch",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Fastify plugin for elastic search",
   "main": "index.js",
   "types": "types/index.d.ts",
@@ -28,13 +28,13 @@
   },
   "homepage": "https://github.com/fastify/fastify-elasticsearch#readme",
   "dependencies": {
-    "@elastic/elasticsearch": "^7.1.0",
-    "fastify-plugin": "^3.0.0"
+    "@elastic/elasticsearch": "^8.2.1",
+    "fastify-plugin": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.6.4",
+    "@fastify/pre-commit": "^2.0.2",
     "fastify": "^4.0.0-rc.2",
-    "pre-commit": "^1.2.2",
     "snazzy": "^9.0.0",
     "standard": "^17.0.0",
     "tap": "^16.0.0",
