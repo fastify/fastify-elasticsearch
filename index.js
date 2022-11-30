@@ -2,6 +2,7 @@
 
 const fp = require('fastify-plugin')
 const { Client } = require('@elastic/elasticsearch')
+const isElasticsearchClient = require('./lib/isElasticsearchClient')
 
 async function fastifyElasticsearch (fastify, options) {
   const { namespace, healthcheck } = options
@@ -9,12 +10,6 @@ async function fastifyElasticsearch (fastify, options) {
   delete options.healthcheck
 
   const client = options.client || new Client(options)
-
-  if (!fastify.isElasticsearchClient) {
-    fastify.decorate('isElasticsearchClient', function isElasticsearchClient (value) {
-      return value instanceof Client
-    })
-  }
 
   if (healthcheck !== false) {
     await client.ping()
@@ -48,3 +43,7 @@ module.exports = fp(fastifyElasticsearch, {
   fastify: '4.x',
   name: '@fastify/elasticsearch'
 })
+module.exports.default = fastifyElasticsearch
+module.exports.fastifyElasticsearch = fastifyElasticsearch
+
+module.exports.isElasticsearchClient = isElasticsearchClient

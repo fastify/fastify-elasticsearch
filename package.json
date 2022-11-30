@@ -5,9 +5,9 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "lint": "standard | snazzy",
+    "lint": "standard",
     "test": "npm run test:unit && npm run test:typescript",
-    "test:unit": "tap test.js",
+    "test:unit": "tap",
     "test:typescript": "tsd"
   },
   "repository": {
@@ -35,7 +35,6 @@
     "@types/node": "^18.6.4",
     "@fastify/pre-commit": "^2.0.2",
     "fastify": "^4.0.0-rc.2",
-    "snazzy": "^9.0.0",
     "standard": "^17.0.0",
     "tap": "^16.0.0",
     "tsd": "^0.22.0"

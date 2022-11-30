@@ -3,7 +3,7 @@
 const { test } = require('tap')
 const { Client } = require('@elastic/elasticsearch')
 const Fastify = require('fastify')
-const fastifyElasticsearch = require('./index')
+const fastifyElasticsearch = require('..')
 
 test('with reachable cluster', async t => {
   const fastify = Fastify()
