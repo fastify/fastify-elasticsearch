@@ -2,6 +2,7 @@
 
 const fp = require('fastify-plugin')
 const { Client } = require('@elastic/elasticsearch')
+const isElasticsearchClient = require('./lib/isElasticsearchClient')
 
 async function fastifyElasticsearch (fastify, options) {
   const { namespace, healthcheck } = options
@@ -42,3 +43,7 @@ module.exports = fp(fastifyElasticsearch, {
   fastify: '4.x',
   name: '@fastify/elasticsearch'
 })
+module.exports.default = fastifyElasticsearch
+module.exports.fastifyElasticsearch = fastifyElasticsearch
+
+module.exports.isElasticsearchClient = isElasticsearchClient

@@ -3,7 +3,8 @@
 const { test } = require('tap')
 const { Client } = require('@elastic/elasticsearch')
 const Fastify = require('fastify')
-const fastifyElasticsearch = require('./index')
+const fastifyElasticsearch = require('..')
+const isElasticsearchClient = require('..').isElasticsearchClient
 
 test('with reachable cluster', async t => {
   const fastify = Fastify()
@@ -52,7 +53,10 @@ test('namespaced', async t => {
   })
 
   await fastify.ready()
-  t.equal(fastify.elastic.cluster.name, 'elasticsearch-js')
+  t.strictEqual(fastify.elastic.cluster.name, 'elasticsearch-js')
+  t.equal(isElasticsearchClient(fastify.elastic), false)
+  t.equal(isElasticsearchClient(fastify.elastic.cluster), true)
+  await fastify.close()
 })
 
 test('namespaced (errored)', async t => {
@@ -87,7 +91,9 @@ test('custom client', async t => {
   fastify.register(fastifyElasticsearch, { client })
 
   await fastify.ready()
-  t.equal(fastify.elastic.name, 'custom')
+  t.equal(isElasticsearchClient(fastify.elastic), true)
+  t.strictEqual(fastify.elastic.name, 'custom')
+  await fastify.close()
 })
 
 test('Missing configuration', async t => {
