@@ -15,9 +15,6 @@ on:
       - 'docs/**'
       - '*.md'
 
-env:
-  TZ: 'UTC'
-
 jobs:
   test:
     uses: fastify/workflows/.github/workflows/plugins-ci-elasticsearch.yml@v4.2.0
