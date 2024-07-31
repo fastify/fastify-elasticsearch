@@ -40,7 +40,7 @@ async function fastifyElasticsearch (fastify, options) {
 }
 
 module.exports = fp(fastifyElasticsearch, {
-  fastify: '4.x',
+  fastify: '5.x',
   name: '@fastify/elasticsearch'
 })
 module.exports.default = fastifyElasticsearch
