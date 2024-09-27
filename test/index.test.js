@@ -1,7 +1,6 @@
 'use strict'
 
 const { test } = require('node:test')
-const assert = require('node:assert')
 const { Client } = require('@elastic/elasticsearch')
 const Fastify = require('fastify')
 const fastifyElasticsearch = require('..')
@@ -13,7 +12,7 @@ test('with reachable cluster', async t => {
   fastify.register(fastifyElasticsearch, { node: 'http://localhost:9200' })
 
   await fastify.ready()
-  assert.equal(fastify.elastic.name, 'elasticsearch-js')
+  t.assert.equal(fastify.elastic.name, 'elasticsearch-js')
 })
 
 test('with unreachable cluster', async t => {
@@ -23,9 +22,9 @@ test('with unreachable cluster', async t => {
 
   try {
     await fastify.ready()
-    assert.fail('should not boot successfully')
+    t.assert.fail('should not boot successfully')
   } catch (err) {
-    assert.ok(err)
+    t.assert.ok(err)
   }
 })
 
@@ -39,9 +38,9 @@ test('with unreachable cluster and healthcheck disabled', async t => {
 
   try {
     await fastify.ready()
-    assert.equal(fastify.elastic.name, 'elasticsearch-js')
+    t.assert.equal(fastify.elastic.name, 'elasticsearch-js')
   } catch (err) {
-    assert.fail('should not error')
+    t.assert.fail('should not error')
   }
 })
 
@@ -54,9 +53,9 @@ test('namespaced', async t => {
   })
 
   await fastify.ready()
-  assert.equal(fastify.elastic.cluster.name, 'elasticsearch-js')
-  assert.equal(isElasticsearchClient(fastify.elastic), false)
-  assert.equal(isElasticsearchClient(fastify.elastic.cluster), true)
+  t.assert.equal(fastify.elastic.cluster.name, 'elasticsearch-js')
+  t.assert.equal(isElasticsearchClient(fastify.elastic), false)
+  t.assert.equal(isElasticsearchClient(fastify.elastic.cluster), true)
   await fastify.close()
 })
 
@@ -75,9 +74,9 @@ test('namespaced (errored)', async t => {
 
   try {
     await fastify.ready()
-    assert.fail('should not boot successfully')
+    t.assert.fail('should not boot successfully')
   } catch (err) {
-    assert.ok(err)
+    t.assert.ok(err)
   }
 })
 
@@ -92,8 +91,8 @@ test('custom client', async t => {
   fastify.register(fastifyElasticsearch, { client })
 
   await fastify.ready()
-  assert.equal(isElasticsearchClient(fastify.elastic), true)
-  assert.equal(fastify.elastic.name, 'custom')
+  t.assert.equal(isElasticsearchClient(fastify.elastic), true)
+  t.assert.equal(fastify.elastic.name, 'custom')
   await fastify.close()
 })
 
@@ -104,8 +103,8 @@ test('Missing configuration', async t => {
 
   try {
     await fastify.ready()
-    assert.fail('should not boot successfully')
+    t.assert.fail('should not boot successfully')
   } catch (err) {
-    assert.ok(err)
+    t.assert.ok(err)
   }
 })
