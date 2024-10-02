@@ -17,7 +17,8 @@ on:
 
 jobs:
   test:
-    uses: fastify/workflows/.github/workflows/plugins-ci-elasticsearch.yml@v4.2.0
+    uses: fastify/workflows/.github/workflows/plugins-ci-elasticsearch.yml@v5.0.1
     with:
       lint: true
       license-check: true
+      elasticsearch-version: 8.15.2
