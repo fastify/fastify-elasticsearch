@@ -4,7 +4,7 @@
 [![NPM version](https://img.shields.io/npm/v/@fastify/elasticsearch.svg?style=flat)](https://www.npmjs.com/package/@fastify/elasticsearch)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
-Fastify plugin for [Elasticsearch](https://www.elastic.co/elasticsearch/) for sharing the same ES client in every part of your server.  
+Fastify plugin for [Elasticsearch](https://www.elastic.co/elasticsearch/) for sharing the same ES client in every part of your server.
 Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch) module is used.
 
 
@@ -15,7 +15,7 @@ npm i @fastify/elasticsearch
 ```
 
 ## Usage
-Add it to your project with `register` and you are done!  
+Add it to your project with `register` and you are done!
 The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) as the client.
 
 ```js
@@ -78,7 +78,7 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ## Versioning
-By default the latest and greatest version of the Elasticsearch client is used, see the [compatibility](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/introduction.html#_compatibility) table to understand if the embedded client is correct for you.  
+By default the latest and greatest version of the Elasticsearch client is used, see the [compatibility](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/introduction.html#_compatibility) table to understand if the embedded client is correct for you.
 If it is not, you can pass a custom client via the `client` option.
 ```js
 const fastify = require('fastify')()
