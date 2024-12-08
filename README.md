@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/fastify/fastify-elasticsearch/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/fastify/fastify-elasticsearch/actions/workflows/ci.yml)
 [![NPM version](https://img.shields.io/npm/v/@fastify/elasticsearch.svg?style=flat)](https://www.npmjs.com/package/@fastify/elasticsearch)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
+[![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-brightgreen?style=flat)](https://github.com/neostandard/neostandard)
 
 Fastify plugin for [Elasticsearch](https://www.elastic.co/elasticsearch/) for sharing the same ES client in every part of your server.
 Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch) module is used.
