@@ -1,8 +1,7 @@
-import fastifyElasticsearch from '..';
-import Fastify from 'fastify';
-import { expectAssignable, expectType } from 'tsd';
-import { Client } from '@elastic/elasticsearch';
-
+import fastifyElasticsearch from '..'
+import Fastify from 'fastify'
+import { expectAssignable, expectType } from 'tsd'
+import { Client } from '@elastic/elasticsearch'
 
 const fastify = Fastify()
 fastify.register(fastifyElasticsearch, { node: 'http://localhost:9200' })

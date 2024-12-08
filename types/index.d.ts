@@ -1,5 +1,5 @@
-import type { FastifyPluginAsync } from 'fastify';
-import type { Client, ClientOptions } from '@elastic/elasticsearch';
+import type { FastifyPluginAsync } from 'fastify'
+import type { Client, ClientOptions } from '@elastic/elasticsearch'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -23,5 +23,5 @@ declare namespace fastifyElasticsearch {
   export { fastifyElasticsearch as default }
 }
 
-declare function fastifyElasticsearch(...params: Parameters<FastifyElasticsearch>): ReturnType<FastifyElasticsearch>
+declare function fastifyElasticsearch (...params: Parameters<FastifyElasticsearch>): ReturnType<FastifyElasticsearch>
 export = fastifyElasticsearch
