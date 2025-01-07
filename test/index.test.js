@@ -23,7 +23,7 @@ test('with unreachable cluster', async t => {
   try {
     await fastify.ready()
     t.assert.fail('should not boot successfully')
-  } catch {
+  } catch (err) {
     t.assert.ok(err)
   }
 })
@@ -39,7 +39,7 @@ test('with unreachable cluster and healthcheck disabled', async t => {
   try {
     await fastify.ready()
     t.assert.equal(fastify.elastic.name, 'elasticsearch-js')
-  } catch (err) {
+  } catch {
     t.assert.fail('should not error')
   }
 })
