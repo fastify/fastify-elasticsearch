@@ -23,7 +23,7 @@ test('with unreachable cluster', async t => {
   try {
     await fastify.ready()
     t.assert.fail('should not boot successfully')
-  } catch (err) {
+  } catch {
     t.assert.ok(err)
   }
 })
