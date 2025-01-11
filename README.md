@@ -14,6 +14,20 @@ Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elas
 npm i @fastify/elasticsearch
 ```
 
+### Compatibility
+| Plugin version | Fastify version |
+| ---------------|-----------------|
+| `^4.x`         | `^5.x`          |
+| `^3.x`         | `^4.x`          |
+| `^2.x`         | `^3.x`          |
+| `^1.x`         | `^2.x`          |
+| `^1.x`         | `^1.x`          |
+
+
+Please note that if a Fastify version is out of support, then so are the corresponding versions of this plugin
+in the table above.
+See [Fastify's LTS policy](https://github.com/fastify/fastify/blob/main/docs/Reference/LTS.md) for more details.
+
 ## Usage
 Add it to your project with `register` and you are done!
 The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) as the client.
