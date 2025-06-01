@@ -59,7 +59,7 @@
     }
   ],
   "dependencies": {
-    "@elastic/elasticsearch": "^8.13.1",
+    "@elastic/elasticsearch": "^9.0.2",
     "fastify-plugin": "^5.0.0"
   },
   "devDependencies": {
