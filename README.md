@@ -30,7 +30,7 @@ See [Fastify's LTS policy](https://github.com/fastify/fastify/blob/main/docs/Ref
 
 ## Usage
 Add it to your project with `register` and you are done!
-The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js#client-options) as the client.
+The plugin accepts the [same options](https://github.com/elastic/elasticsearch-js) as the client.
 
 ```js
 const fastify = require('fastify')()
@@ -92,7 +92,7 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ## Versioning
-By default the latest and greatest version of the Elasticsearch client is used, see the [compatibility](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/introduction.html#_compatibility) table to understand if the embedded client is correct for you.
+By default the latest and greatest version of the Elasticsearch client is used, see the [compatibility](https://www.elastic.co/docs/reference/elasticsearch/clients/javascript/installation#nodejs-support) table to understand if the embedded client is correct for you.
 If it is not, you can pass a custom client via the `client` option.
 ```js
 const fastify = require('fastify')()
