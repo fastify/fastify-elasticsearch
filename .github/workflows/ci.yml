@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  test-elasticsearch-8:
     permissions:
       contents: write
       pull-requests: write
@@ -31,4 +31,15 @@ jobs:
     with:
       lint: true
       license-check: true
-      elasticsearch-version: 8.15.2
+      elasticsearch-version: '8.19.19'
+
+  test-elasticsearch-9:
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: fastify/workflows/.github/workflows/plugins-ci-elasticsearch.yml@ef591e2186785d5ab36b9fe6a79c7ce2f1d94e57 # v7.0.0
+    with:
+      lint: true
+      license-check: true
+      elasticsearch-version: '9.4.4'
+
