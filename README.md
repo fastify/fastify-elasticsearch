@@ -11,7 +11,7 @@ Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elas
 ## Install
 
 ```
-npm i @fastify/elasticsearch
+npm i @fastify/elasticsearch @elastic/elasticsearch
 ```
 
 ### Compatibility
