@@ -11,7 +11,7 @@ Under the hood, the official [elasticsearch](https://www.npmjs.com/package/@elas
 ## Install
 
 ```
-npm i @fastify/elasticsearch
+npm i @fastify/elasticsearch @elastic/elasticsearch
 ```
 
 ### Compatibility
@@ -92,6 +92,9 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ## Versioning
+
+`@fastify/elasticsearch` supports Elasticsearch client versions 8 and 9.
+
 By default the latest and greatest version of the Elasticsearch client is used, see the [compatibility](https://www.elastic.co/docs/reference/elasticsearch/clients/javascript/installation#nodejs-support) table to understand if the embedded client is correct for you.
 If it is not, you can pass a custom client via the `client` option.
 ```js
